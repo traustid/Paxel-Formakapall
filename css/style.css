@@ -1,0 +1,185 @@
+body,
+html {
+  background: #424143;
+}
+.game-frame {
+  background-image: url('../img/game-back.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 1200px;
+  height: 898px;
+  position: relative;
+}
+.card-stack {
+  position: absolute;
+  bottom: 110px;
+  left: 330px;
+}
+.available-cards {
+  position: absolute;
+  bottom: 110px;
+  right: 880px;
+}
+.rows {
+  position: absolute;
+  top: 215px;
+  width: 540px;
+  left: 50%;
+  margin-left: -270px;
+}
+.row {
+  text-align: center;
+}
+.row:not(:first-child) {
+  margin-top: -60px;
+}
+.card {
+  width: 70px;
+  height: 102px;
+  display: inline-block;
+  margin: 5px;
+  background-size: cover;
+  background-position: center;
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 3px;
+}
+.rows .row .card {
+  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.29);
+  cursor: pointer;
+}
+.card.back {
+  background-image: url('../img/card-back.png');
+}
+.space {
+  width: 70px;
+  height: 102px;
+  display: inline-block;
+  margin: 5px;
+  box-sizing: border-box;
+}
+.deck .card-wrapper {
+  display: block;
+  float: left;
+}
+.deck .card {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.29);
+  cursor: pointer;
+}
+.card-wrapper {
+  display: inline-block;
+}
+.deck.available-cards .card-wrapper:not(:first-child) {
+  margin-left: -74px;
+}
+.deck.card-stack .card-wrapper:not(:first-child) {
+  margin-left: -80px;
+}
+.animation-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: none;
+}
+.app-view {
+  opacity: 0;
+  transition: all 400ms ease-in-out;
+}
+.app-view.initialized {
+  opacity: 1;
+}
+.restart-button {
+  width: 51px;
+  height: 54px;
+  background: url('../img/restart-button.png');
+  display: block;
+  position: absolute;
+  bottom: 100px;
+  right: 100px;
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+  z-index: 300;
+}
+.restart-button:hover {
+  transform: rotate(10deg) scale(1.1);
+}
+.game-done {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  right: 60px;
+  bottom: 60px;
+  background-color: rgba(66, 65, 67, 0.73);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 500ms ease-in-out, visibility 0s linear 500ms;
+}
+.game-done.visible {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+}
+.game-done .svg.crown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -250px;
+  margin-left: -250px;
+  width: 500px;
+  height: 500px;
+}
+.game-done .svg.crown .layer {
+  position: absolute;
+}
+.game-done .svg.crown .layer svg {
+  width: 500px;
+  height: 500px;
+}
+.game-done .svg.crown .layer-1 {
+  animation: spin 15s linear infinite;
+}
+.game-done .svg.crown .layer-2 {
+  animation: spin-reversed 15s linear infinite;
+}
+.game-done .svg.crown .layer-3 {
+  animation: scale-bounce 4s ease-in-out infinite;
+}
+@keyframes spin {
+  25% {
+    -webkit-transform: rotate(90deg) scale(1.2);
+  }
+  50% {
+    -webkit-transform: rotate(180deg) scale(1);
+  }
+  75% {
+    -webkit-transform: rotate(270deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+@keyframes spin-reversed {
+  25% {
+    -webkit-transform: rotate(-90deg) scale(1);
+  }
+  50% {
+    -webkit-transform: rotate(-180deg) scale(1.2);
+  }
+  75% {
+    -webkit-transform: rotate(-270deg) scale(1);
+  }
+  100% {
+    transform: rotate(-360deg) scale(1.2);
+  }
+}
+@keyframes scale-bounce {
+  50% {
+    -webkit-transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
