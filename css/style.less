@@ -1,15 +1,23 @@
+@import 'mixins.less';
+@import 'lang.less';
+
 body, html {
-	background: #424143;
+	margin: 0;
+/*	background: #424143;*/
+	background: #fff;
+	font-family: 'Bubblegum Sans', cursive;
 }
 
 .game-frame {
-	background-image: url('../img/game-back.png');
+	position: relative;
+
+	width: 1200px;
+	height: 898px;
+
+	background-image: url('../img/game-back-paxel.png');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
-	width: 1200px;
-	height: 898px;
-	position: relative;
 }
 
 .card-stack {
@@ -114,6 +122,67 @@ body, html {
 	&.initialized {
 		opacity: 1;
 	}
+
+	.paxel-logo {
+		display: block;
+
+		position: absolute;
+
+		left: 60px;
+		top: 2px;
+
+		width: 187px;
+		height: 55px;
+
+		background-image: url('../img/paxel-logo.png');
+
+		.transition(all 200ms ease-in-out);
+
+		z-index: 10;
+
+		cursor: pointer;
+
+		&:hover {
+			.transform(rotate(3deg));
+		}
+	}
+
+	.frame-buttons {
+		position: absolute;
+
+		top: 15px;
+		right: 90px;
+
+		z-index: 10;
+
+		a {
+			display: inline-block;
+
+			padding: 15px 20px;
+
+			color: #fff;
+			font-size: 22px;
+			text-decoration: none;
+
+			background-image: url('../img/frame-button-back.png');
+			background-repeat: no-repeat;
+			background-position: center;
+
+			cursor: pointer;
+
+			.transition(all 200ms ease-in-out);
+
+			&:hover {
+				.transform(rotate(2deg));
+			}
+
+			&:last-child {
+				&:hover {
+					.transform(rotate(-3deg));
+				}
+			}
+		}
+	}
 }
 
 .restart-button {
@@ -133,7 +202,48 @@ body, html {
 	}
 }
 
-.game-done {
+.sun-container {
+	position: absolute;
+
+	top: 60px;
+	left: 60px;
+	right: 60px;
+	bottom: 60px;
+
+	background-color: rgba(66, 65, 67, 0.73);
+
+	visibility: hidden;
+	opacity: 0;
+
+	transition: opacity 500ms ease-in-out, visibility 0s linear 500ms;
+	-webkit-transition: opacity 500ms ease-in-out, visibility 0s linear 500ms;
+	-moz-transition: opacity 500ms ease-in-out, visibility 0s linear 500ms;
+	-o-transition: opacity 500ms ease-in-out, visibility 0s linear 500ms;
+
+	.game-fail & {
+		visibility: visible;
+		opacity: 1;
+
+		.transition-delay(0s);
+	}
+
+	.svg.sun {
+		position: absolute;
+
+		top: 50%;
+		left: 50%;
+
+		width: 430px;
+		height: 310px;
+
+		margin-top: -155px;
+		margin-left: -215px;
+
+		.animation(sun-animation 1s infinite linear);
+	}
+}
+
+.crown-container {
 	position: absolute;
     top: 60px;
     left: 60px;
@@ -234,3 +344,28 @@ body, html {
 		transform: scale(1);
 	}
 }
+
+@keyframes sun-animation {
+
+	0% {
+		.transform(rotate(0deg));
+	}
+
+	25% {
+		.transform(rotate(-15deg));
+	}
+	
+	50% {
+		.transform(rotate(0deg));
+	}
+	
+	75% {
+		.transform(rotate(15deg));
+	}
+	
+	100% {
+		.transform(rotate(0deg));
+	}
+
+}
+

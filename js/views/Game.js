@@ -13,9 +13,13 @@ define(function(require){
 			var cardCounter = 0;
 
 			this.collection = new Deck();
-			this.collection.on('gameOver', function() {
-				console.log('gameOver');
-			});
+			this.collection.on('gameOver', _.bind(function() {
+				this.$el.addClass('game-fail');
+				setTimeout(_.bind(function() {
+					this.$el.removeClass('game-fail');
+					this.restartButtonClick();
+				}, this), 3000);
+			}, this));
 			this.collection.on('gameSuccess', _.bind(function() {
 				this.$('.game-done').addClass('visible');
 				console.log('gameSuccess');
@@ -44,7 +48,17 @@ define(function(require){
 		},
 
 		events: {
+			'click .paxel-button': 'paxelClick',
 			'click .restart-button': 'restartButtonClick'
+		},
+
+		paxelClick: function() {
+			if (document.referrer.toLowerCase().indexOf('paxel123.com') == -1) {
+				window.parent.location.href = 'http://www.paxel123.com';
+			}
+			else {
+				history.go(-1);
+			}
 		},
 
 		restartButtonClick: function() {
